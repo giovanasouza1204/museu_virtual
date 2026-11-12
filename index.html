@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Museu Virtual: Invenções e Patentes Negras no Cotidiano</title>
+  <meta name="description" content="Exposição digital interativa sobre inventores negros, patentes essenciais do cotidiano, pesquisa histórica e uso ético de Inteligência Artificial." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <!-- Link de Salto Rápido (Acessibilidade) -->
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
+  <!-- Barra de Acessibilidade -->
+  <aside class="a11y-bar" aria-label="Controles de acessibilidade">
+    <div class="container">
+      <div class="a11y-label">
+        <span aria-hidden="true">♿</span>
+        <span>Acessibilidade e Leitura</span>
+      </div>
+      <div class="a11y-controls" role="group" aria-label="Ajustar tamanho da fonte e contraste">
+        <button type="button" class="a11y-btn" onclick="alterarFonte(-1)" aria-label="Diminuir tamanho da fonte">A-</button>
+        <button type="button" class="a11y-btn" onclick="resetarFonte()" aria-label="Restaurar tamanho padrão da fonte">A (100%)</button>
+        <button type="button" class="a11y-btn" onclick="alterarFonte(1)" aria-label="Aumentar tamanho da fonte">A+</button>
+        <button type="button" class="a11y-btn" id="btn-contraste" onclick="alternarContraste()" aria-pressed="false">
+          Alto Contraste
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Cabeçalho Principal -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="#" class="brand" aria-label="Início - Museu Virtual Consciência Negra">
+        <span class="brand-badge">Acervo Digital • Consciência Negra</span>
+        <span class="brand-title">Invenções &amp; Patentes Negras</span>
+      </a>
+      <nav aria-label="Navegação principal">
+        <ul class="nav-links">
+          <li><a href="#galeria">Exposição</a></li>
+          <li><a href="#pesquisa-etica">Pesquisa &amp; IA Ética</a></li>
+          <li><a href="#deploy-github">Publicar no GitHub</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main id="conteudo-principal">
+
+    <!-- Seção de Abertura (Hero) -->
+    <section class="hero" aria-labelledby="titulo-principal">
+      <div class="container hero-grid">
+        <div>
+          <span class="hero-kicker">Exposição Permanente • Tecnologia e Memória</span>
+          <h1 id="titulo-principal">Os criadores negros por trás das tecnologias do seu cotidiano</h1>
+          <p class="hero-lead">
+            Do semáforo nas esquinas às chamadas de voz pela internet (VoIP) e à arquitetura dos computadores pessoais: explore patentes históricas que moldaram o mundo moderno e combata o apagamento histórico.
+          </p>
+          <div class="hero-actions">
+            <a href="#galeria" class="btn-primary">Explorar Acervo (8 Peças)</a>
+            <a href="#pesquisa-etica" class="btn-secondary">Metodologia e Uso Ético de IA</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Destaques do acervo">
+          <h2>Curadoria Educativa</h2>
+          <p style="font-size: 0.92rem; color: var(--text-muted); margin-top: 6px;">
+            Este museu virtual une engenharia, história social e desenvolvimento web acessível.
+          </p>
+          <ul class="hero-stats">
+            <li>
+              <span class="stat-number">08</span>
+              <span class="stat-text">Patentes e marcos tecnológicos essenciais documentados</span>
+            </li>
+            <li>
+              <span class="stat-number">100%</span>
+              <span class="stat-text">HTML5 semântico, CSS responsivo e JavaScript acessível</span>
+            </li>
+            <li>
+              <span class="stat-number">USPTO / INPI</span>
+              <span class="stat-text">Incentivo à verificação em bases oficiais de patentes</span>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Seção da Galeria Interativa -->
+    <section id="galeria" class="gallery-section" aria-labelledby="titulo-galeria">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Sala de Exposição Interativa</span>
+          <h2 id="titulo-galeria">Acervo de Invenções e Patentes</h2>
+          <p>
+            Filtre por área tecnológica ou pesquise pelo nome do inventor. Clique em <strong>"Inspecionar Patente"</strong> para abrir a ficha técnica completa.
+          </p>
+        </div>
+
+        <!-- Barra de Filtros e Busca -->
+        <div class="filter-toolbar" role="region" aria-label="Filtros da exposição">
+          <div class="filter-group" role="group" aria-label="Filtrar por categoria">
+            <button type="button" class="filter-btn active" onclick="filtrarCategoria('todos', this)">Todos (8)</button>
+            <button type="button" class="filter-btn" onclick="filtrarCategoria('computacao', this)">Computação &amp; Telecom</button>
+            <button type="button" class="filter-btn" onclick="filtrarCategoria('cotidiano', this)">Segurança &amp; Cotidiano</button>
+            <button type="button" class="filter-btn" onclick="filtrarCategoria('saude-engenharia', this)">Saúde &amp; Engenharia</button>
+          </div>
+
+          <div class="search-box">
+            <label for="campo-busca" class="sr-only">Pesquisar inventor ou tecnologia</label>
+            <input
+              type="search"
+              id="campo-busca"
+              placeholder="Buscar inventor, patente ou tecnologia..."
+              oninput="pesquisarAcervo(this.value)"
+            />
+          </div>
+        </div>
+
+        <!-- Status dinâmico para leitores de tela e usuários -->
+        <p id="status-galeria" class="gallery-status" aria-live="polite">
+          Exibindo todas as 8 peças do acervo.
+        </p>
+
+        <!-- Grade de Cards (Preenchida dinamicamente pelo JavaScript) -->
+        <div id="grade-invencoes" class="museum-grid"></div>
+      </div>
+    </section>
+
+    <!-- Seção de Pesquisa Histórica e Uso Crítico/Ético de IA -->
+    <section id="pesquisa-etica" class="ethics-section" aria-labelledby="titulo-etica">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Formação Crítica &amp; Cidadania Digital</span>
+          <h2 id="titulo-etica">Pesquisa Histórica e Uso Ético da Inteligência Artificial</h2>
+          <p>
+            A tecnologia não é neutra. Construir este projeto exige rigor histórico para não reproduzir vieses algorítmicos nem inventar dados.
+          </p>
+        </div>
+
+        <div class="ethics-grid">
+          <article class="info-card">
+            <h3>1. Combate ao Apagamento Epistemológico</h3>
+            <p>
+              Durante séculos, barreiras raciais e jurídicas dificultaram o registro de patentes por pessoas negras — muitas vezes obrigadas a ceder direitos a empregadores ou ocultar sua identidade.
+            </p>
+            <ul>
+              <li><strong>Fontes Primárias:</strong> Sempre consulte registros oficiais como o <em>USPTO</em> (Escritório de Patentes dos EUA) e o <em>INPI</em> (Brasil).</li>
+              <li><strong>Protagonismo Brasileiro:</strong> Nomes como André Rebouças e Enedina Alves Marques provam que a engenharia negra também construiu a infraestrutura do Brasil.</li>
+            </ul>
+          </article>
+
+          <article class="info-card">
+            <h3>2. Uso Crítico e Transparente de IA no Código</h3>
+            <p>
+              Ferramentas de IA generativa aceleram a escrita de HTML, CSS e JavaScript, mas podem gerar "alucinações" (datas erradas, números de patentes falsos ou biografias misturadas).
+            </p>
+            <ul>
+              <li><strong>Curadoria Humana:</strong> Todo dado histórico gerado por IA deve ser validado em enciclopédias acadêmicas antes da publicação.</li>
+              <li><strong>Auditoria de Acessibilidade:</strong> O desenvolvedor deve testar a navegação por teclado e o contraste de cores, garantindo inclusão real.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção de Deploy no GitHub Pages -->
+    <section id="deploy-github" class="deploy-section" aria-labelledby="titulo-deploy">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Publicação na Web</span>
+          <h2 id="titulo-deploy">Como Publicar Este Projeto no GitHub Pages</h2>
+          <p>
+            Siga estes passos para colocar seu museu virtual no ar gratuitamente e compartilhar o link público com sua turma ou comunidade.
+          </p>
+        </div>
+
+        <ol class="steps-grid">
+          <li class="step-card">
+            <span class="step-num">Passo 01</span>
+            <h3>Organize os Arquivos</h3>
+            <p>Salve os 3 arquivos na mesma pasta: <code>index.html</code>, <code>style.css</code> e <code>script.js</code>.</p>
+          </li>
+
+          <li class="step-card">
+            <span class="step-num">Passo 02</span>
+            <h3>Envie para o GitHub</h3>
+            <p>Crie um repositório público no GitHub e envie os arquivos pelo site ou via terminal Git:</p>
+            <div class="code-box">
+              <pre id="comandos-git">git init
+git add .
+git commit -m "Publica Museu Virtual"
+git branch -M main
+git remote add origin SEU_LINK.git
+git push -u origin main</pre>
+              <button type="button" class="copy-btn" onclick="copiarComandos()">Copiar</button>
+            </div>
+          </li>
+
+          <li class="step-card">
+            <span class="step-num">Passo 03</span>
+            <h3>Ative o GitHub Pages</h3>
+            <p>No repositório, acesse <strong>Settings &gt; Pages</strong>. Em <em>Branch</em>, selecione <strong>main</strong> e clique em <strong>Save</strong>. Em 1 minuto seu site estará online!</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>Museu Virtual: Invenções &amp; Patentes Negras</h3>
+        <p style="font-size: 0.9rem; margin-top: 6px;">
+          Projeto educativo desenvolvido com HTML5 Semântico, CSS3 e JavaScript puro, promovendo a consciência negra, a história da ciência e a transparência no uso de IA.
+        </p>
+      </div>
+      <div style="text-align: right;">
+        <p style="font-size: 0.85rem;">Conformidade de Acessibilidade: WCAG AA</p>
+        <p style="font-size: 0.82rem; margin-top: 4px;">Desenvolvido com curadoria humana e apoio transparente de IA.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Acessível de Detalhes da Patente -->
+  <div
+    id="modal-patente"
+    class="modal-backdrop"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-titulo"
+    aria-hidden="true"
+    onclick="fecharModalFora(event)"
+  >
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <span id="modal-numero-patente" class="modal-patent-tag">PATENTE</span>
+          <h2 id="modal-titulo" class="modal-title">Título da Invenção</h2>
+          <p id="modal-inventor" class="modal-subtitle">Inventor (Ano)</p>
+        </div>
+        <button type="button" class="modal-close" id="btn-fechar-modal" onclick="fecharModal()" aria-label="Fechar ficha técnica">
+          &times;
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div id="modal-diagrama" class="modal-diagram" aria-hidden="true"></div>
+
+        <div class="modal-block">
+          <h4>Contexto Histórico e Biografia</h4>
+          <p id="modal-biografia"></p>
+        </div>
+
+        <div class="modal-block">
+          <h4>Como Funciona a Tecnologia</h4>
+          <p id="modal-funcionamento"></p>
+        </div>
+
+        <div class="modal-impact">
+          <h4>Impacto no Seu Cotidiano Hoje</h4>
+          <p id="modal-impacto"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Conexão com o JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
